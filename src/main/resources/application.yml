@@ -1,0 +1,59 @@
+server:
+  port: ${PORT:10100}
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    # 本地测试
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/test2?serverTimezone=UTC&characterEncoding=utf-8
+#    username: root
+#    password: root
+    # free
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://db4free.net:3306/tianyuge_db?serverTimezone=UTC&characterEncoding=utf-8&reconnect=true
+    username: tianyuge
+    password: tianyuge397#(&
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  banner:
+    image:
+      location: a.txt
+  mail:
+    host: smtp.qq.com
+    port: 587
+    protocol: smtp
+    username: 1027648040@qq.com
+    password: bobtscjuroatbcba
+    default-encoding: UTF-8
+  #热部署插件配置
+  thymeleaf:
+    cache: false
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/java/main
+      exclude: META-INF
+#email:
+#  emailAccount: 2039256602@qq.com
+#  emailAccessKey: yqbhtkqxdjyecbge
+#  emailServer: smtp.qq.com
+#tencent:
+#  cos:
+#    account:
+#      secret-id: AKIDjIchV2JK4XjeLo1xc07xVmmVx83h4A0Z
+#      secret-key: JMBk35qKdfSzFDvNuA9qHQIuGMBj0zh8
+#    region: ap-shanghai
+#    bucket: travel-shanxi-1304686700
+mybatis:
+  type-aliases-package: com.briup.bean
+  mapper-locations: mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com.briup: debug

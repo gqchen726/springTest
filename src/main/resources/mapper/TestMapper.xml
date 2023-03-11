@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tk.tianyuge.mapper.TestMapper">
+    <select id="test" resultType="java.lang.String">
+        select <![CDATA[ replace(replace(name,  " " , ""), "\u0002", "")]]> name
+        from test
+        where
+        <bind name="name" value="'%'+name +'%'"></bind>
+        name like #{name}
+    </select>
+
+    <select id="test1" resultType="java.lang.String">
+        select "\\\\u0002"
+        from dual
+    </select>
+
+    <select id="test3" resultType="java.lang.String">
+        select "111"
+        from dual
+    </select>
+
+    <insert id="batchInsertTest" parameterType="java.util.List">
+        INSERT INTO test
+        (id, name)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id}, #{item.name})
+        </foreach>
+    </insert>
+</mapper>
